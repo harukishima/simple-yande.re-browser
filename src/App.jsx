@@ -45,6 +45,22 @@ const App = () => {
   React.useEffect(() => {
     fetchData(setPosts, tags, page);
   }, [page]);
+
+  const handleClickSearch = () => {
+    fetchData(setPosts, tags, page);
+    //Go to the top of the page
+    window.scrollTo(0, 0);
+  };
+
+  const handleChangePage = (inc) => {
+    if (inc) {
+      setPage(page + 1);
+    } else if (page > 1) {
+      setPage(page - 1);
+    }
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div>
       <div style={{ position: 'fixed', zIndex: 10 }}>
@@ -53,21 +69,15 @@ const App = () => {
           onChange={(e) => setTags(e.target.value)}
           type="text"
           onKeyPress={(e) => {
-            if (e.key === 'Enter') fetchData(setPosts, tags, page);
+            if (e.key === 'Enter') handleClickSearch();
           }}
         ></input>
-        <button onClick={() => fetchData(setPosts, tags, page)}>Find</button>
+        <button onClick={() => handleClickSearch()}>Find</button>
       </div>
       <div style={{ position: 'fixed', zIndex: 9, right: 20, bottom: 20 }}>
-        <button
-          onClick={() => {
-            if (page > 1) setPage(page - 1);
-          }}
-        >
-          Previous
-        </button>
+        <button onClick={() => handleChangePage(false)}>Previous</button>
         <span>{page}</span>
-        <button onClick={() => setPage(page + 1)}>Next</button>
+        <button onClick={() => handleChangePage(true)}>Next</button>
       </div>
       {renderPosts(posts)}
     </div>
