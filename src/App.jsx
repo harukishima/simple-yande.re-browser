@@ -8,14 +8,16 @@ const renderPosts = (posts) => {
     return (
       <div key={post.id} style={{ display: 'flex', justifyContent: 'center' }}>
         <LazyLoadImage
-          key={post.id}
           alt={post.tags}
-          src={post.file_url} // use normal <img> attributes as props
+          src={post.jpeg_url} // use normal <img> attributes as props
           //width="90%"
           //width={1000}
           height={post.sample_height}
           effect="blur"
         />
+        <a href={post.file_url} target="_blank">
+          full size
+        </a>
       </div>
       // <img
       //   style={{ display: 'flex', justifyContent: 'center' }}
