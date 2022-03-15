@@ -10,22 +10,14 @@ const renderPosts = (posts) => {
         <LazyLoadImage
           alt={post.tags}
           src={post.jpeg_url} // use normal <img> attributes as props
-          //width="90%"
-          //width={1000}
           height={post.sample_height}
+          width={post.sample_width}
           effect="blur"
         />
         <a href={post.file_url} target="_blank">
           full size
         </a>
       </div>
-      // <img
-      //   style={{ display: 'flex', justifyContent: 'center' }}
-      //   src={post.file_url}
-      //   alt={post.tags}
-      //   key={post.id}
-      //   width="90%"
-      // ></img>
     );
   });
 };
@@ -50,6 +42,7 @@ const App = () => {
     fetchData(setPosts, tags, page);
     //Go to the top of the page
     window.scrollTo(0, 0);
+    setPosts([]);
   };
 
   const handleChangePage = (inc) => {
@@ -59,6 +52,7 @@ const App = () => {
       setPage(page - 1);
     }
     window.scrollTo(0, 0);
+    setPosts([]);
   };
 
   return (
