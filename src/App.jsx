@@ -7,15 +7,14 @@ const renderPosts = (posts) => {
   return posts.map((post) => {
     return (
       <div key={post.id} style={{ display: 'flex', justifyContent: 'center' }}>
-        <LazyLoadImage
-          alt={post.tags}
-          src={post.jpeg_url} // use normal <img> attributes as props
-          height={post.sample_height}
-          width={post.sample_width}
-          effect="blur"
-        />
         <a href={post.file_url} target="_blank">
-          full size
+          <LazyLoadImage
+            alt={post.tags}
+            src={post.jpeg_url} // use normal <img> attributes as props
+            height={post.sample_height}
+            width={post.sample_width}
+            effect="blur"
+          />
         </a>
       </div>
     );
