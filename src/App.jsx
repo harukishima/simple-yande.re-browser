@@ -10,6 +10,7 @@ const renderPosts = (posts) => {
         <a href={post.file_url} target="_blank">
           <LazyLoadImage
             alt={post.tags}
+            placeholderSrc={`https://via.placeholder.com/${post.sample_width}x${post.sample_height}?text=${post.tags}`}
             src={post.jpeg_url} // use normal <img> attributes as props
             height={post.sample_height}
             width={post.sample_width}
